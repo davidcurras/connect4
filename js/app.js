@@ -9,7 +9,7 @@ var board = [
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
-  [null, null, null, null, null, null],
+  [null, null, null, red, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
   [null, null, null, null, null, null]
@@ -19,11 +19,46 @@ var toggleTurn = function () {
   turn = (turn === 'yellow') ? 'red' : 'yellow'
 }
 
+var checkGameStatus = function (col, row) {
+  // // check horizontal
+  // if (board[col, row] === board[col, row + 1]) 
+  // if (board[col, row] === board[col, row + 2])
+  // if (board[col, row] === board[col, row + 3])
+  // if (board[col, row] === board[col, row - 1])
+  // if (board[col, row] === board[col, row - 2])
+  // if (board[col, row] === board[col, row - 3])
+
+  // // check vertical
+  // if (board[col, row] === board[col + 1, row])
+  // if (board[col, row] === board[col + 2, row])
+  // if (board[col, row] === board[col + 3, row])
+  // if (board[col, row] === board[col - 1, row])
+  // if (board[col, row] === board[col - 2, row])
+  // if (board[col, row] === board[col - 3, row])
+
+  // // check inc diagonal
+  // if (board[col, row] === board[col + 1, row + 1])
+  // if (board[col, row] === board[col + 2, row + 1])
+  // if (board[col, row] === board[col + 3, row + 1])
+  // if (board[col, row] === board[col - 1, row - 1])
+  // if (board[col, row] === board[col - 2, row - 1])
+  // if (board[col, row] === board[col - 3, row - 1])
+
+  // // check dec diagonal
+  // if (board[col, row] === board[col + 1, row - 1])
+  // if (board[col, row] === board[col + 2, row - 1])
+  // if (board[col, row] === board[col + 3, row - 1])
+  // if (board[col, row] === board[col - 1, row + 1])
+  // if (board[col, row] === board[col - 2, row + 1])
+  // if (board[col, row] === board[col - 3, row + 1])
+}
+
 var columnEventHandler = function (evt) {
   var columnId = evt.target.id.substr(1, 1)
   for (var i = 0; i < board[columnId].length; i++) {
     if (!board[columnId][i]) {
       board[columnId][i] = turn
+      checkGameStatus(columnId, i)
       toggleTurn()
       render()
       break
